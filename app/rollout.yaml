@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: example-rollout
 spec:
-  replicas: 10
+  replicas: 5
   selector:
     matchLabels:
       app: nginx
@@ -30,10 +30,10 @@ spec:
             stable: 90
       steps:
       - setCanaryScale:
+          replicas: 1
+      - pause: { duration: 10s }
+      - setCanaryScale:
           replicas: 3
       - pause: { duration: 10s }
       - setCanaryScale:
-          replicas: 6
-      - pause: { duration: 10s }
-      - setCanaryScale:
-          replicas: 10
+          replicas: 5

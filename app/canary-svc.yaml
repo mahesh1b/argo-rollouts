@@ -4,7 +4,7 @@ metadata:
   name: example-rollout-canary
 spec:
   selector:
-    app: nginx  # Matches the canary Pods, defined by the app label
+    app: nginx
   ports:
     - port: 80
       targetPort: 80

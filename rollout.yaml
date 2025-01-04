@@ -21,6 +21,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
+      trafficRouting: object
       maxSurge: "25%"
       maxUnavailable: 0
       steps:

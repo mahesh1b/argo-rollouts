@@ -21,25 +21,18 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
-      trafficRouting: object
       maxSurge: "25%"
       maxUnavailable: 0
       steps:
-      # 1 canary pod (10% of spec.replicas)
-      - setCanaryScale:
-          weight: 10
-      # 90% of traffic to the 1 canary pod
-      - setWeight: 90
-      - pause: {}
-      # - setWeight: 25
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 50
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 75
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 100
-      # - pause:
-      #     duration: 10s
+      - setWeight: 25
+      - pause:
+          duration: 10s
+      - setWeight: 50
+      - pause:
+          duration: 10s
+      - setWeight: 75
+      - pause:
+          duration: 10s
+      - setWeight: 100
+      - pause:
+          duration: 10s

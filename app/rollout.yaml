@@ -1,1 +1,37 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: example-rollout
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.5
+        ports:
+        - containerPort: 80
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    canary: #Indicates that the rollout should use the Canary strategy
+      maxSurge: "25%"
+      maxUnavailable: 0
+      steps:
+      - setWeight: 25
+      - pause:
+          duration: 10s
+      - setWeight: 50
+      - pause: {} # pause indefinitely
+      - setWeight: 75
+      - pause:
+          duration: 20s
+      - setWeight: 100
+      - pause:
+          duration: 20s

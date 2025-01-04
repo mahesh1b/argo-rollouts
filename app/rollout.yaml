@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.15.5
+        image: nginx:1.15.4
         ports:
         - containerPort: 80
   minReadySeconds: 30
@@ -34,5 +34,3 @@ spec:
       - pause:
           duration: 10s
       - setWeight: 100
-      - pause:
-          duration: 10s

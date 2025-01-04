@@ -21,6 +21,7 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
+      trafficRouting: object
       maxSurge: "25%"
       maxUnavailable: 0
       steps:

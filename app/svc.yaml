@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-rollout-stable
+spec:
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80

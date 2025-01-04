@@ -21,13 +21,11 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
+      canaryService: example-rollout-canary
+      stableService: example-rollout-stable
       trafficRouting:
-        split:
-          canaryService: example-rollout-canary
-          stableService: example-rollout-stable
-          weights:
-            canary: 10
-            stable: 90
+        nginx:
+          stableIngress: example-rollout-ing
       steps:
       - setCanaryScale:
           replicas: 1

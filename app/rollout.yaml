@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: example-rollout
 spec:
-  replicas: 5
+  replicas: 8
   selector:
     matchLabels:
       app: nginx
@@ -21,6 +21,8 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
+      maxSurge: 25%
+      maxUnavailable: 0
       canaryService: example-rollout-canary
       stableService: example-rollout-stable
       trafficRouting:

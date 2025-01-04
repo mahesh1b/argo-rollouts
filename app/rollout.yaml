@@ -32,9 +32,9 @@ spec:
       steps:
       - setCanaryScale:
           replicas: 3
-      - pause: {}  # Optional pause between steps to allow time for evaluation.
+      - pause: { duration: 10s }  # Optional pause between steps to allow time for evaluation.
       - setCanaryScale:
           replicas: 6
-      - pause: {}
+      - pause: { duration: 10s }
       - setCanaryScale:
           replicas: 10

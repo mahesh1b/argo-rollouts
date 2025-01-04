@@ -22,26 +22,19 @@ spec:
   strategy:
     canary:
       trafficRouting:
+        # This controls how traffic is split between stable and canary.
         split:
           canaryService: example-rollout-canary
           stableService: example-rollout-stable
           weights:
             canary: 10
             stable: 90
-      # maxSurge: "25%"
-      # maxUnavailable: 0
       steps:
       - setCanaryScale:
           replicas: 3
+      - pause: {}  # Optional pause between steps to allow time for evaluation.
       - setCanaryScale:
-      matchTrafficWeight: true
-      # - setWeight: 25
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 50
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 75
-      # - pause:
-      #     duration: 10s
-      # - setWeight: 100
+          replicas: 6
+      - pause: {}
+      - setCanaryScale:
+          replicas: 10

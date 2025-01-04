@@ -20,7 +20,8 @@ spec:
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
-    canary: #Indicates that the rollout should use the Canary strategy
+    canary:
+      dynamicStableScale: true
       maxSurge: "25%"
       maxUnavailable: 0
       steps:
@@ -28,10 +29,11 @@ spec:
       - pause:
           duration: 10s
       - setWeight: 50
-      - pause: {} # pause indefinitely
+      - pause:
+          duration: 10s
       - setWeight: 75
       - pause:
-          duration: 20s
+          duration: 10s
       - setWeight: 100
       - pause:
-          duration: 20s
+          duration: 10s

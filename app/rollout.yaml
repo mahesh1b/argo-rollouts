@@ -21,7 +21,6 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
-      dynamicStableScale: true
       maxSurge: "25%"
       maxUnavailable: 0
       steps:

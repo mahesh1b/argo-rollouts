@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-rollout-ing
+spec:
+  ingressClassName: external-nginx
+  rules:
+  - host: argorollouts.sandbox.globalequineproductions.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-rollout-stable
+            port:
+              number: 80

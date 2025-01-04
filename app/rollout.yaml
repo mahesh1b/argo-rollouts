@@ -23,6 +23,8 @@ spec:
     canary:
       trafficRouting:
         # This controls how traffic is split between stable and canary.
+        # refer: https://argo-rollouts.readthedocs.io/en/stable/features/traffic-management/
+        # for ingress/alb https://argo-rollouts.readthedocs.io/en/stable/features/traffic-management/alb/
         split:
           canaryService: example-rollout-canary
           stableService: example-rollout-stable

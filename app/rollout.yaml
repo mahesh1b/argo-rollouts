@@ -21,6 +21,13 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
+      trafficRouting:
+        split:
+          canaryService: example-rollout-canary
+          stableService: example-rollout-stable
+          weights:
+            canary: 10
+            stable: 90
       # maxSurge: "25%"
       # maxUnavailable: 0
       steps:

@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: example-rollout
-  # annotations:
-  #   notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: gep-alerts
-  #   notifications.argoproj.io/subscribe.on-rollout-completed.slack: gep-alerts
-  #   notifications.argoproj.io/subscribe.on-rollout-paused.slack: gep-alerts
-  #   notifications.argoproj.io/subscribe.on-scaling-replica-set.slack: gep-alerts
+  annotations:
+    notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: gep-alerts
+    notifications.argoproj.io/subscribe.on-rollout-completed.slack: gep-alerts
+    notifications.argoproj.io/subscribe.on-rollout-paused.slack: gep-alerts
+    notifications.argoproj.io/subscribe.on-scaling-replica-set.slack: gep-alerts
 spec:
   replicas: 8
   selector:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.15.6
+        image: nginx:1.15.5
         ports:
         - containerPort: 80
   minReadySeconds: 30

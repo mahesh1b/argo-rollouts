@@ -2,6 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: example-rollout
+  annotations:
+    notifications.argoproj.io/subscribe.on-rollout-step-completed.slack: gep-alerts
+    notifications.argoproj.io/subscribe.on-rollout-completed.slack: gep-alerts
+    notifications.argoproj.io/subscribe.on-rollout-paused.slack: gep-alerts
 spec:
   replicas: 8
   selector:

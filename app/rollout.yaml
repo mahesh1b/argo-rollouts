@@ -26,8 +26,15 @@ spec:
   revisionHistoryLimit: 3
   strategy:
     canary:
-      maxSurge: 25%
-      maxUnavailable: 0
+      analysis:
+        templates:
+        - templateName: success-rate
+        startingStep: 2 # delay starting analysis run until setWeight: 40%
+        args:
+        - name: host
+          value: argorollouts.sandbox.globalequineproductions.com
+      # maxSurge: 25%
+      # maxUnavailable: 0
       canaryService: example-rollout-canary
       stableService: example-rollout-stable
       trafficRouting:
@@ -40,6 +47,7 @@ spec:
       - pause: { duration: 10s }
       - setCanaryScale:
           replicas: 4
+      - etWeight: 50 # route 25% traffic to the canary pods
       - pause: { duration: 10s }
       - setCanaryScale:
           weight: 100

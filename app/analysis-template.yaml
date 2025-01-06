@@ -4,7 +4,7 @@ metadata:
   name: success-rate
 spec:
   args:
-  - name: service-name
+  - name: host
   metrics:
   - name: success-rate
     interval: 5m
@@ -17,4 +17,4 @@ spec:
         - key: X-Scope-OrgID
           value: gep_sandbox
         query: |
-          sum(irate(nginx_ingress_controller_requests{host="{{args.service-name}}",status!~"5.*"}[5m]))/sum(irate(nginx_ingress_controller_requests{host="{{args.service-name}}"}[5m]))
+          sum(irate(nginx_ingress_controller_requests{host="{{args.host}}",status!~"5.*"}[5m]))/sum(irate(nginx_ingress_controller_requests{host="{{args.host}}"}[5m]))

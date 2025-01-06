@@ -57,7 +57,7 @@ spec:
           templates:
           - templateName: success-rate
           args:
-          - name: service-name
+          - name: host
             value: argorollouts.sandbox.globalequineproductions.com
       - setWeight: 40
       - pause: {duration: 10m}

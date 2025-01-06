@@ -19,20 +19,20 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: tomcat #nginx:1.15.6
+        image: nginx:1.15.6
         ports:
         - containerPort: 80
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
     canary:
-      analysis:
-        templates:
-        - templateName: success-rate
-        startingStep: 2 # delay starting analysis run until setWeight: 40%
-        args:
-        - name: host
-          value: argorollouts.sandbox.globalequineproductions.com
+      # analysis:
+      #   templates:
+      #   - templateName: success-rate
+      #   startingStep: 2 # delay starting analysis run until setWeight: 40%
+      #   args:
+      #   - name: host
+      #     value: argorollouts.sandbox.globalequineproductions.com
       # maxSurge: 25%
       # maxUnavailable: 0
       # canaryService: example-rollout-canary
@@ -52,7 +52,13 @@ spec:
       # - setCanaryScale:
       #     weight: 100
       - setWeight: 20
-      - pause: {duration: 10m}
+      - pause: {duration: 5m}
+      - analysis:
+          templates:
+          - templateName: success-rate
+          args:
+          - name: service-name
+            value: argorollouts.sandbox.globalequineproductions.com
       - setWeight: 40
       - pause: {duration: 10m}
       - setWeight: 60
